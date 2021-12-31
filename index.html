@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Memory">
+<title>Memory</title>
+<script>
+var t1=null;
+var t2=null;
+var found=0;
+document.addEventListener("DOMContentLoaded",verteiler);
+document.addEventListener("DOMContentLoaded",controll);
+document.addEventListener("DOMContentLoaded",mischen);
+function verteiler(){
+	for (i=0;i<=15;i++){
+		document.getElementsByName('card')[i].style.width="100px";
+		document.getElementsByName('card')[i].style.height="100px";
+		document.getElementsByName('card')[i].style.position="absolute";
+		document.getElementsByName('card')[i].style.backgroundColor="red";
+		document.getElementsByName('card')[i].style.cursor="pointer";
+		document.getElementsByName('card')[i].style.borderStyle="solid";
+		document.getElementsByName('card')[i].style.borderWidth="2px";
+
+		if (i<=3){
+		document.getElementsByName('card')[i].style.top="100px";
+	}
+	else if (i<=7){
+		document.getElementsByName('card')[i].style.top="250px";
+	}
+	else if (i<=11){
+		document.getElementsByName('card')[i].style.top="400px";
+	}
+	else if (i<=15){
+		document.getElementsByName('card')[i].style.top="550px";
+	}
+	if (i===0||i===4||i===8||i===12){
+		document.getElementsByName('card')[i].style.left="100px";
+	}
+	else if (i===1||i===5||i===9||i===13){
+		document.getElementsByName('card')[i].style.left="250px";
+	}
+	else if (i===2||i===6||i===10||i===14){
+		document.getElementsByName('card')[i].style.left="400px";
+	}
+	else if (i===3||i===7||i===11||i===15){
+		document.getElementsByName('card')[i].style.left="550px";
+	}
+	
+	
+		}
+	}	
+	function controll(){		
+
+card0=document.getElementsByName('card')[0];
+card0.addEventListener('click', function(){change(0);}, true);
+card1=document.getElementsByName('card')[1];
+card1.addEventListener('click', function(){change(1);}, true);
+card2=document.getElementsByName('card')[2];
+card2.addEventListener('click', function(){change(2);}, true);
+card3=document.getElementsByName('card')[3];
+card3.addEventListener('click', function(){change(3);}, true);
+card4=document.getElementsByName('card')[4];
+card4.addEventListener('click', function(){change(4);}, true);
+card5=document.getElementsByName('card')[5];
+card5.addEventListener('click', function(){change(5);}, true);
+card6=document.getElementsByName('card')[6];
+card6.addEventListener('click', function(){change(6);}, true);
+card7=document.getElementsByName('card')[7];
+card7.addEventListener('click', function(){change(7);}, true);
+card8=document.getElementsByName('card')[8];
+card8.addEventListener('click', function(){change(8);}, true);
+card9=document.getElementsByName('card')[9];
+card9.addEventListener('click', function(){change(9);}, true);
+card10=document.getElementsByName('card')[10];
+card10.addEventListener('click', function(){change(10);}, true);
+card11=document.getElementsByName('card')[11];
+card11.addEventListener('click', function(){change(11);}, true);
+card12=document.getElementsByName('card')[12];
+card12.addEventListener('click', function(){change(12);}, true);
+card13=document.getElementsByName('card')[13];
+card13.addEventListener('click', function(){change(13);}, true);
+card14=document.getElementsByName('card')[14];
+card14.addEventListener('click', function(){change(14);}, true);
+card15=document.getElementsByName('card')[15];
+card15.addEventListener('click', function(){change(15);}, true);
+}
+
+function mischen(){
+var left=[0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+for(i=0;i<=15;i++){
+	 var f=Math.floor(Math.random()*left.length);
+	 document.getElementsByName('card')[i].innerHTML="<img src='shapes/s"+left[f]+".png'height='100' name='pic' style='visibility:hidden' />";
+	 for(h=f;h<left.length;h++){
+		 left[h]=left[(h+1)];
+		 }
+		 left.pop();
+	}
+	
+	}
+
+function change(card){
+	if(t1===null&&t2===null){
+		t1=card;
+		document.getElementsByName('pic')[t1].style.visibility="visible";
+		document.getElementsByName('card')[t1].style.borderStyle="none";
+	}
+	else if(t2===null&&t1!=card){
+		t2=card;
+		document.getElementsByName('pic')[t2].style.visibility="visible";
+		document.getElementsByName('card')[t2].style.borderStyle="none";
+		var yn=false;
+	    if(document.getElementsByName('card')[t1].innerHTML===document.getElementsByName('card')[t2].innerHTML){
+		yn=true;
+		}
+		var to=setTimeout(dis,1000,yn,t1,t2);
+		
+		}
+	
+		}
+	function dis(yn,a,b){
+		if(yn){
+			found+=1;
+			if(found===8){
+			window.alert("You Won.");
+			} 	
+		 document.getElementsByName('card')[a].style.visibility="hidden";
+		 document.getElementsByName('card')[b].style.visibility="hidden";
+		 
+		
+			}
+		 document.getElementsByName('pic')[a].style.visibility="hidden";
+		 document.getElementsByName('pic')[b].style.visibility="hidden";
+		 document.getElementsByName('card')[a].style.borderStyle="solid";
+		 document.getElementsByName('card')[b].style.borderStyle="solid";
+	    t1=null;
+		t2=null;
+		}	
+</script>
+<style>
+body{background-color:#0034BC}
+</style>
+</head>
+<body>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+	<div name="card"></div>
+</body>
+</html>
